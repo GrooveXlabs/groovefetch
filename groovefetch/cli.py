@@ -3,7 +3,7 @@
 import asyncio
 import json
 import sys
-from typing import Optional
+from typing import Any, Callable, Optional
 
 import click
 from rich.console import Console
@@ -17,16 +17,16 @@ from .utils import validate_url
 console = Console()
 
 
-def coro(f):
+def coro(f: Callable) -> Callable:
     """Decorator to run async functions in Click."""
-    def wrapper(*args, **kwargs):
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
         return asyncio.run(f(*args, **kwargs))
     return wrapper
 
 
 @click.group()
 @click.version_option(version="0.1.0", prog_name="groovefetch")
-def main():
+def main() -> None:
     """🌐 GrooveFetch — AI-native adaptive web scraper"""
     pass
 
@@ -140,7 +140,7 @@ async def crawl(url: str, max_pages: int, same_domain: bool):
 
 @main.command()
 @click.argument("domain")
-def stats(domain: str):
+def stats(domain: str) -> None:
     """Show learned stats for a domain."""
     from .adaptive import AdaptiveLearner
     

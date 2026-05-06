@@ -11,10 +11,10 @@ from groovefetch.utils import validate_url
 class TestURLValidation:
     """Test URL validation and security."""
     
-    def test_valid_url(self):
+    def test_valid_url(self) -> None:
         assert validate_url("https://example.com") == "https://example.com"
     
-    def test_localhost_blocked(self):
+    def test_localhost_blocked(self) -> None:
         with pytest.raises(ValueError):
             validate_url("http://localhost:8080")
     

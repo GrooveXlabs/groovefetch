@@ -165,7 +165,7 @@ class ProxyRotator:
     """Simple proxy rotation for distributed scraping.
     
     Usage:
-        rotator = ProxyRotator(["http://proxy1:8080", "http://proxy2:8080"])
+        rotator = ProxyRotator(["https://proxy1:8080", "https://proxy2:8080"])
         proxy = rotator.next()
     """
     

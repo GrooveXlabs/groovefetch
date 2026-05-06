@@ -23,7 +23,7 @@ class DomainProfile:
     retry_pattern: str = "exponential"
     last_updated: float = 0.0
     
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if self.delays is None:
             self.delays = []
         if self.optimal_headers is None:
@@ -44,7 +44,7 @@ class DomainProfile:
         # Use median to be robust against outliers
         return statistics.median(self.delays)
     
-    def record_attempt(self, success: bool, delay: float, used_stealth: bool):
+    def record_attempt(self, success: bool, delay: float, used_stealth: bool) -> None:
         """Record the result of a scraping attempt."""
         self.request_count += 1
         if success:
@@ -88,7 +88,7 @@ class AdaptiveLearner:
         delay: float,
         used_stealth: bool = False,
         headers: Optional[Dict[str, str]] = None
-    ):
+    ) -> None:
         """Record the outcome of a scraping attempt.
         
         Args:
@@ -176,7 +176,7 @@ class AdaptiveLearner:
             "last_updated": p.last_updated,
         }
     
-    def _load(self):
+    def _load(self) -> None:
         """Load profiles from disk."""
         path = Path(self.storage_path)
         if not path.exists():
@@ -191,7 +191,7 @@ class AdaptiveLearner:
         except (json.JSONDecodeError, TypeError):
             self.profiles = {}
     
-    def _save(self):
+    def _save(self) -> None:
         """Save profiles to disk."""
         path = Path(self.storage_path)
         path.parent.mkdir(parents=True, exist_ok=True)

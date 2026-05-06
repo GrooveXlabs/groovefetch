@@ -15,7 +15,7 @@ class Product(BaseModel):
 class TestSchemaValidation:
     """Test schema validation functionality."""
     
-    def test_validate_single_item(self):
+    def test_validate_single_item(self) -> None:
         schema = Schema(Product)
         item = {"name": "Test Product", "price": "19.99"}
         

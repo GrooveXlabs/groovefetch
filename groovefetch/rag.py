@@ -20,7 +20,7 @@ class ChromaExporter:
         self._client = None
         self._embedding_function = None
     
-    def _get_client(self):
+    def _get_client(self) -> Any:
         """Lazy-load ChromaDB client."""
         if self._client is None:
             try:

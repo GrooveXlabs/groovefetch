@@ -1,5 +1,6 @@
 """Schema validation layer for scraped data using Pydantic."""
 
+import re
 from typing import Type, List, Any, Optional, Dict
 from pydantic import BaseModel, ValidationError
 import json
@@ -73,10 +74,14 @@ class Schema:
         """Coerce common scraped types to match schema expectations."""
         cleaned = dict(item)
         
-        # Strip whitespace from strings
         for key, val in cleaned.items():
             if isinstance(val, str):
-                cleaned[key] = val.strip()
+                val = val.strip()
+                # Strip currency symbols for numeric fields
+                val = re.sub(r'^[\$€£¥]\s*', '', val)
+                # Remove thousands separators
+                val = val.replace(',', '')
+                cleaned[key] = val
         
         return cleaned
     

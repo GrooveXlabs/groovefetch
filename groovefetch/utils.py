@@ -52,11 +52,13 @@ def validate_url(url: str) -> str:
     # Block IPs in host portion
     try:
         ip = ipaddress.ip_address(hostname)
+    except ValueError:
+        ip = None  # Not an IP, that's fine
+    
+    if ip is not None:
         for network in _BLOCKED_NETWORKS:
             if ip in network:
                 raise ValueError(f"URL points to blocked IP range: {ip}")
-    except ValueError:
-        pass  # Not an IP, that's fine
     
     return url
 

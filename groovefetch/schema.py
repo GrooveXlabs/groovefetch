@@ -72,6 +72,7 @@ class Schema:
     
     def _coerce_item(self, item: Dict[str, Any]) -> Dict[str, Any]:
         """Coerce common scraped types to match schema expectations."""
+        import re
         cleaned = dict(item)
         
         for key, val in cleaned.items():

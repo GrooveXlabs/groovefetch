@@ -71,10 +71,10 @@ class TestAdaptiveLearning:
         assert profile.domain == "example.com"
         assert profile.success_rate == 0.0
     
-    def test_learning_records(self):
+    def test_learning_records(self, tmp_path):
         from groovefetch.adaptive import AdaptiveLearner
         
-        learner = AdaptiveLearner(storage_path=None)
+        learner = AdaptiveLearner(storage_path=str(tmp_path / "profiles.json"))
         learner.record("example.com", success=True, delay=1.5, used_stealth=False)
         learner.record("example.com", success=True, delay=2.0, used_stealth=False)
         

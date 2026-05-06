@@ -213,7 +213,7 @@ class StealthFetcher:
             )
             
             page = await context.new_page()
-            self.profile.apply_to_page(page)
+            await self.profile.apply_to_page(page)
             
             response = await page.goto(url, wait_until="networkidle")
             

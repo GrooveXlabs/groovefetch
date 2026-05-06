@@ -127,7 +127,7 @@ class StealthProfile:
             hardware_concurrency=random.choice([2, 4, 8]),
         )
     
-    def apply_to_page(self, page) -> None:
+    async def apply_to_page(self, page) -> None:
         """Apply fingerprint to a Playwright page object.
         
         Args:
@@ -136,10 +136,10 @@ class StealthProfile:
         fp = self.fingerprint
         
         # Set viewport
-        page.set_viewport_size(fp.viewport)
+        await page.set_viewport_size(fp.viewport)
         
         # Override navigator properties
-        page.evaluate(f"""
+        await page.evaluate(f"""
             Object.defineProperty(navigator, 'webdriver', {{
                 get: () => undefined
             }});
@@ -154,18 +154,8 @@ class StealthProfile:
             }});
         """)
         
-        # Override webgl vendor
-        page.evaluate("""
-            const getParameter = WebGLRenderingContext.prototype.getParameter;
-            WebGLRenderingContext.prototype.getParameter = function(parameter) {
-                if (parameter === 37445) return 'Intel Inc.';
-                if (parameter === 37446) return 'Intel Iris OpenGL Engine';
-                return getParameter(parameter);
-            };
-        """)
-        
         # Remove Playwright-specific properties
-        page.evaluate("""
+        await page.evaluate("""
             delete navigator.__proto__.webdriver;
             window.chrome = { runtime: {} };
         """)

@@ -1,5 +1,9 @@
 # 🌐 GrooveFetch
 
+[![Tests](https://github.com/GrooveXlabs/groovefetch/actions/workflows/test.yml/badge.svg)](https://github.com/GrooveXlabs/groovefetch/actions/workflows/test.yml)
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 > **The AI-native web scraper that learns, validates, and feeds your RAG pipeline.**
 
 GrooveFetch is an adaptive web scraping framework built for the AI era. Unlike traditional scrapers that just extract raw HTML, GrooveFetch understands structure, validates data against schemas, learns optimal fetching strategies per domain, and exports clean data directly to vector databases for LLM consumption.
@@ -135,6 +139,18 @@ groovefetch/
 - Automatic secret redaction in logs
 - Safe defaults: rate limiting, respectful crawling
 - No data exfiltration — all learning is local
+
+## Ecosystem
+
+| Project | Description |
+|---------|-------------|
+| [grooveguard](https://github.com/GrooveXlabs/grooveguard) | MCP Server Security Scanner |
+| [groovehub](https://github.com/GrooveXlabs/groovehub) | MCP Server Registry |
+| [groovestrike](https://github.com/GrooveXlabs/groovestrike) | Autonomous pentest framework |
+| [groovelink](https://github.com/GrooveXlabs/groovelink) | Resilient API client |
+| [purpleforge](https://github.com/GrooveXlabs/purpleforge) | Purple team defense rules |
+| [threathound](https://github.com/GrooveXlabs/threathound) | Blue Team SOC automation |
+| [redtrack](https://github.com/GrooveXlabs/redtrack) | Red Team recon & attack paths |
 
 ## 📄 License
 
